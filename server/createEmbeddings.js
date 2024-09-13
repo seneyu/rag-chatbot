@@ -41,4 +41,4 @@ async function createAndStoreEmbeddings() {
   }
 }
 
-createAndStoreEmbeddings();
+// createAndStoreEmbeddings();

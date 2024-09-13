@@ -5,12 +5,36 @@ const App = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (input.trim()) {
-      setMessages([...messages, { text: input, isUser: true }]);
+      const userMessage = { text: input, isUser: true };
+      setMessages((prevMessages) => [...prevMessages, userMessage]);
       setInput('');
-      // logic to send the message to backend
-      // logic to add the response to the message
+
+      try {
+        // send message to backend
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: input.trim() }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('data: ', data);
+
+        // add bot's response to the messages
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          // { text: data.message, isUser: false },
+          { text: data, isUser: false },
+        ]);
+      } catch (error) {
+        console.error('Error sending message: ', error);
+      }
     }
   };
 
