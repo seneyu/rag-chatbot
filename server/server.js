@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import botController from './botController.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,8 +12,8 @@ app.get('/', (req, res) => {
   res.status(200).send('<h1>Hello from Express!</h1>');
 });
 
-app.post('/api/chat', (req, res) => {
-  res.json("Bot's response!");
+app.post('/api/chat', botController.llmMiddleware, (req, res) => {
+  res.status(200).json(res.locals.response);
 });
 
 app.get('*', (req, res) => {
