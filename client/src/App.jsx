@@ -1,9 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ChatMessage from './components/ChatMessage';
 
 const App = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const chatMessagesRef = useRef(null);
+
+  const scrollToBottom = () => {
+    if (chatMessagesRef.current) {
+      chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const handleSend = async () => {
     if (input.trim()) {
@@ -29,7 +40,6 @@ const App = () => {
         // add bot's response to the messages
         setMessages((prevMessages) => [
           ...prevMessages,
-          // { text: data.message, isUser: false },
           { text: data, isUser: false },
         ]);
       } catch (error) {
@@ -40,7 +50,7 @@ const App = () => {
 
   return (
     <div className="chat-container">
-      <div className="chat-messages">
+      <div className="chat-messages" ref={chatMessagesRef}>
         {messages.map((message, index) => (
           <ChatMessage key={index} message={message} />
         ))}

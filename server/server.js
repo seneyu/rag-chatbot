@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
 
 app.post('/api/chat', botController.llmMiddleware, (req, res) => {
   res.status(200).json(res.locals.response);
+  // res.status(200).json('Hello yourself!');
 });
 
 app.get('*', (req, res) => {
