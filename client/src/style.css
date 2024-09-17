@@ -5,7 +5,7 @@ body {
 }
 
 body {
-  background-color: #55b365b3;
+  background-color: #4886bd;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -21,9 +21,9 @@ body {
 }
 
 .chat-messages {
-  height: 30em;
+  height: 25em;
   overflow-y: auto;
-  margin: 1em 0;
+  margin: 0.8em 0;
   padding: 0 1em;
 }
 
@@ -32,13 +32,14 @@ body {
 }
 
 .message {
-  padding: 0.7em 1em;
+  padding: 0.5em 1em;
   color: #ffffff;
   font-size: 1em;
   line-height: 1.5;
   word-wrap: break-word;
   max-width: 80%;
   display: inline-block;
+  /* margin-top: 0.5em; */
 }
 
 .message-container {
@@ -55,14 +56,14 @@ body {
 }
 
 .user {
-  background: #55b364;
+  background: #062775e7;
   border-radius: 15px 0 15px 15px;
 }
 
 .bot {
   background: #ffffff;
   color: rgb(86, 98, 111);
-  border: 1px solid #55b364;
+  border: 1px solid #041d56;
   border-radius: 0 15px 15px 15px;
 }
 
@@ -83,7 +84,19 @@ input[type='text'] {
 button {
   background-color: transparent;
   border: 1px solid #586e88;
+  border-radius: 15px;
+  padding: 0.7em 1em;
+  margin-right: 1em;
+}
+
+.send-button {
+  background-color: transparent;
+  border: 1px solid #586e88;
   border-left: 0;
   border-radius: 0 15px 15px 0;
   padding: 1em;
+}
+
+button:hover {
+  cursor: pointer;
 }

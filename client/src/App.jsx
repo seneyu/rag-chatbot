@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import ChatMessage from './components/ChatMessage';
+import Welcome from './components/Welcome';
 
 const App = () => {
   const [messages, setMessages] = useState([]);
@@ -16,41 +17,50 @@ const App = () => {
     scrollToBottom();
   }, [messages]);
 
+  const sendMessage = async (messageText, isButtonPayload = false) => {
+    const userMessage = { text: messageText, isUser: true };
+    setMessages((prevMessages) => [...prevMessages, userMessage]);
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: isButtonPayload ? messageText : messageText.trim(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('data: ', data);
+
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: data, isUser: false },
+      ]);
+    } catch (error) {
+      console.error('Error sending message: ', error);
+    }
+  };
+
   const handleSend = async () => {
     if (input.trim()) {
-      const userMessage = { text: input, isUser: true };
-      setMessages((prevMessages) => [...prevMessages, userMessage]);
+      sendMessage(input);
       setInput('');
-
-      try {
-        // send message to backend
-        const response = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: input.trim() }),
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log('data: ', data);
-
-        // add bot's response to the messages
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { text: data, isUser: false },
-        ]);
-      } catch (error) {
-        console.error('Error sending message: ', error);
-      }
     }
+  };
+
+  const handleButtonClick = async (button) => {
+    sendMessage(button.title, true);
   };
 
   return (
     <div className="chat-container">
       <div className="chat-messages" ref={chatMessagesRef}>
+        <Welcome onButtonClick={handleButtonClick} />
         {messages.map((message, index) => (
           <ChatMessage key={index} message={message} />
         ))}
@@ -62,7 +72,9 @@ const App = () => {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type your message..."
         />
-        <button onClick={handleSend}>Send</button>
+        <button className="send-button" onClick={handleSend}>
+          Send
+        </button>
       </div>
     </div>
   );
