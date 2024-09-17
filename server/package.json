@@ -9,8 +9,16 @@
     "dev": "nodemon server",
     "start": "concurrently \"cd ../client && npm run dev\" \"npm run dev\""
   },
-  "author": "",
+  "author": "Stephany Ho (https://github.com/seneyu)",
   "license": "MIT",
+  "keywords": [
+    "california",
+    "health",
+    "chatbot",
+    "rag",
+    "medi-cal",
+    "covered-california"
+  ],
   "dependencies": {
     "@langchain/community": "^0.2.32",
     "@langchain/core": "^0.3.0",

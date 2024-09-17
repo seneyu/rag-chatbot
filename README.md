@@ -1,6 +1,6 @@
 # microsoft-rag-hack-2024
 
-## California Health Services RAG Chatbot
+## California Health Services Assistance Chatbot
 
 A chatbot using Retrieval-Augmented Generation (RAG) to provide information about Medi-Cal and Covered California.
 
