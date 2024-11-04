@@ -1,8 +1,11 @@
-# microsoft-rag-hack-2024
+# rag-chatbot
 
 ## California Health Services Assistance Chatbot
 
 A chatbot using Retrieval-Augmented Generation (RAG) to provide information about Medi-Cal and Covered California.
+
+Note:
+This is a refactored version of a project submitted for the Microsoft Rag Hack 2024. You can find the original submitted project [here](https://github.com/microsoft/RAG_Hack/issues/150).
 
 ## Background
 
@@ -21,10 +24,50 @@ Healthcare in the United States can be expensive and complex to navigate. This R
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/seneyu/microsoft-rag-hack-2024.git`
-2. Install dependencies for both client and server directories.
-3. Set up environment variables eg. OPENAI_API_KEY in .env file.
-4. Navigate to the server directory and start the server with: `npm run start`.
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/seneyu/rag-chatbot.git
+   cd rag-chatbot
+   ```
+
+2. Install dependencies for both client and server directories:
+
+   ```bash
+   cd client && npm install
+   cd ../server && npm install
+   ```
+
+3. Set up environment variables:
+
+   - Create a `.env` file in the server directory
+   - Add your OpenAI API key:
+
+   ```text
+   OPENAI_API_KEY=your_api_key_here
+   ```
+
+4. This project uses Supabase for storing and retrieving embeddings. Follow these steps to set up your own Supabase instance:
+
+   1. Create a Supabase account at supabase.com
+   2. Create a new project in Supabase
+   3. Set up your database schema
+   4. Generate embeddings: - Navigate to /server/createEmbeddings.js - Uncomment line 44 createAndStoreEmbeddings() and run the script to populate your Supabase database with embeddings
+   5. Add Supabase configuration to your `.env` file:
+
+   ```text
+   SUPABASE_URL=your_supabase_project_url
+   SUPABASE_KEY=your_supabase_api_key
+   ```
+
+5. Navigate to the server directory and start the server with:
+
+   ```bash
+   cd server
+   npm run start
+   ```
+
+6. Open your browser and navigate to `http://localhost:5173` (or the port specified by Vite).
 
 ## Future Improvements
 
