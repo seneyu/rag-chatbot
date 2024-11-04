@@ -52,7 +52,13 @@ Healthcare in the United States can be expensive and complex to navigate. This R
    1. Create a Supabase account at supabase.com
    2. Create a new project in Supabase
    3. Set up your database schema
-   4. Generate embeddings: - Navigate to /server/createEmbeddings.js - Uncomment line 44 createAndStoreEmbeddings() and run the script to populate your Supabase database with embeddings
+   4. Generate embeddings:
+
+   - Navigate to /server/createEmbeddings.js
+   - Review the `createAndStoreEmbeddings()` function at line 44
+   - If you need to generate new embeddings, ensure the function call is uncommented: `createAndStoreEmbeddings()`. Run the script: `node creaetEmbeddings.js`.
+   - If embeddings are already generated, ensure the function call is commented out to prevent accidental recreation. You can skip running this script.
+
    5. Add Supabase configuration to your `.env` file:
 
    ```text
