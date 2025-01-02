@@ -12,6 +12,14 @@ body {
   justify-content: center;
 }
 
+.welcome-buttons {
+  margin-bottom: 1rem;
+}
+
+.welcome-buttons button {
+  font-size: 14px;
+}
+
 .chat-container {
   background-color: #ffffff;
   width: 60em;
@@ -70,6 +78,10 @@ body {
 .chat-input {
   display: flex;
   margin-top: 1em;
+}
+
+.chat-input input {
+  font-size: 1rem;
 }
 
 input[type='text'] {

@@ -46,6 +46,13 @@ const App = () => {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
   const handleSend = async () => {
     if (input.trim()) {
       sendMessage(input);
@@ -70,6 +77,7 @@ const App = () => {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyPress}
           placeholder="Type your message..."
         />
         <button className="send-button" onClick={handleSend}>

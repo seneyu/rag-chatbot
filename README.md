@@ -2,6 +2,8 @@
 
 ## California Health Services Assistance Chatbot
 
+![App Screenshot](./client/public/assets/app-screenshot.png)
+
 A chatbot using Retrieval-Augmented Generation (RAG) to provide information about Medi-Cal and Covered California.
 
 Note:
@@ -40,7 +42,7 @@ Healthcare in the United States can be expensive and complex to navigate. This R
 
 3. Set up environment variables:
 
-   - Create a `.env` file in the server directory
+   - Create a `.env` file in the `server` directory
    - Add your OpenAI API key:
 
    ```text
@@ -56,7 +58,7 @@ Healthcare in the United States can be expensive and complex to navigate. This R
 
    - Navigate to /server/createEmbeddings.js
    - Review the `createAndStoreEmbeddings()` function at line 44
-   - If you need to generate new embeddings, ensure the function call is uncommented: `createAndStoreEmbeddings()`. Run the script: `node creaetEmbeddings.js`.
+   - If you need to generate new embeddings, ensure the function call is uncommented: `createAndStoreEmbeddings()`. Run the script: `node creaetEmbeddings.js`. Note: For this project I keep the files in the `./client/data` directory.
    - If embeddings are already generated, ensure the function call is commented out to prevent accidental recreation. You can skip running this script.
 
    5. Add Supabase configuration to your `.env` file:
